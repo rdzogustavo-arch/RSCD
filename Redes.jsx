@@ -291,7 +291,7 @@ return (
   <div className="fl" style={{ fontSize: 76, lineHeight: 1, marginBottom: 6, position: "relative" }}>🔍</div>
 
   <div className="fu" style={{ display: "inline-block", background: "linear-gradient(135deg,#EEF2FF,#F5F3FF)", border: "1.5px solid #C7D2FE", borderRadius: 100, padding: "5px 16px", fontSize: 11, fontWeight: 700, color: "#4F46E5", letterSpacing: 1, textTransform: "uppercase", marginTop: 18, marginBottom: 14, position: "relative" }}>
-    Universidad Marista de Mérida
+    Gustavo Rodríguez - Docente
   </div>
 
   <h1 className="fu1" style={{ fontSize: 36, fontWeight: 800, color: "#1E1B4B", lineHeight: 1.18, letterSpacing: -1.4, margin: "0 0 14px", position: "relative" }}>
