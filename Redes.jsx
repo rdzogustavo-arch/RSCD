@@ -505,15 +505,17 @@ return (
     <h2 style={{ fontSize: 28, fontWeight: 800, color: "#1E1B4B", letterSpacing: -1.1, margin: 0 }}>Huella Digital</h2>
   </div>
 
-  <div className="fu1 card" style={{ padding: "28px 22px 22px", marginBottom: 16, textAlign: "center" }}>
-    <svg viewBox="0 0 200 130" style={{ width: "100%", maxWidth: 220, display: "block", margin: "0 auto" }}>
-      <path d="M 20 100 A 80 80 0 0 0 180 100" fill="none" stroke="#EAEAF6" strokeWidth="13" strokeLinecap="round" />
-      <path d="M 20 100 A 80 80 0 0 0 180 100" fill="none" stroke={level.color} strokeWidth="13" strokeLinecap="round" strokeDasharray={`${fill.toFixed(2)} 999`} />
-      <text x="100" y="80" textAnchor="middle" style={{ fontFamily: "Sora,sans-serif", fontSize: 32, fontWeight: 800, fill: "#1E1B4B" }}>{pctDisplay}%</text>
-      <text x="100" y="99" textAnchor="middle" style={{ fontFamily: "Sora,sans-serif", fontSize: 10, fill: "#9CA3AF", fontWeight: 500, letterSpacing: .5 }}>VISIBILIDAD</text>
+  <div className="fu1 card" style={{ padding: "28px 22px 26px", marginBottom: 16, textAlign: "center" }}>
+    <svg viewBox="0 0 200 140" style={{ width: "100%", maxWidth: 220, display: "block", margin: "0 auto" }}>
+      {/* Arco invertido: curva hacia arriba */}
+      <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#EAEAF6" strokeWidth="13" strokeLinecap="round" />
+      <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke={level.color} strokeWidth="13" strokeLinecap="round" strokeDasharray={`${fill.toFixed(2)} 999`} />
+      {/* Textos debajo del arco */}
+      <text x="100" y="122" textAnchor="middle" style={{ fontFamily: "Sora,sans-serif", fontSize: 32, fontWeight: 800, fill: "#1E1B4B" }}>{pctDisplay}%</text>
+      <text x="100" y="139" textAnchor="middle" style={{ fontFamily: "Sora,sans-serif", fontSize: 10, fill: "#9CA3AF", fontWeight: 500, letterSpacing: .5 }}>VISIBILIDAD</text>
     </svg>
 
-    <div className="pop" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: level.bg, border: `1.5px solid ${level.border}`, color: level.color, padding: "9px 22px", borderRadius: 100, fontSize: 15, fontWeight: 700, marginTop: 14, marginBottom: 14 }}>
+    <div className="pop" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: level.bg, border: `1.5px solid ${level.border}`, color: level.color, padding: "9px 22px", borderRadius: 100, fontSize: 15, fontWeight: 700, marginTop: 16, marginBottom: 14 }}>
       <span>{level.emoji}</span><span>{level.label}</span>
     </div>
     <p style={{ fontSize: 13.5, color: "#6B7280", lineHeight: 1.68, margin: 0 }}>{level.desc}</p>
@@ -595,40 +597,31 @@ return (
     <div style={{ background: "linear-gradient(160deg,#EEF2FF 0%,#F5F0FF 50%,#EFF6FF 100%)", border: "1.5px solid #C7D2FE", borderRadius: 26, padding: "30px 24px", marginBottom: 20 }}>
       <div style={{ fontSize: 28, marginBottom: 16, textAlign: "center" }}>📚</div>
 
-      <h3 style={{ fontSize: 20, fontWeight: 800, color: "#1E1B4B", letterSpacing: -.6, margin: "0 0 18px", lineHeight: 1.3, textAlign: "center" }}>
-        Si ya estás en las redes<br />— y estás —<br />
-        <span style={{ color: "#4F46E5" }}>esta materia es la que te faltaba.</span>
-      </h3>
-
       <p style={{ fontSize: 14, color: "#4B5563", lineHeight: 1.78, margin: "0 0 14px" }}>
-        Lo que acabas de vivir en estos minutos es exactamente lo que la materia propone como punto de partida: la toma de conciencia de que tu vida digital ya existe, la hayas construido conscientemente o no. Pero el análisis no termina aquí.
+        Lo que acabas de vivir en estos minutos es exactamente lo que la materia propone como punto de partida: tomar conciencia de que tu vida digital ya existe, la hayas construido conscientemente o no. Pero el análisis no termina aquí.
       </p>
 
       <p style={{ fontSize: 14, color: "#4B5563", lineHeight: 1.78, margin: "0 0 14px" }}>
-        En <strong>Redes Sociales y Cultura Digital</strong> no aprenderás a usar Instagram — eso ya lo sabes. Aprenderás a entender el sistema en el que ya vives. A leer críticamente los algoritmos que moldean lo que ves, lo que compras y lo que piensas. A moverte en el entorno digital con inteligencia, ética y estrategia.
-      </p>
-
-      <p style={{ fontSize: 14, color: "#4B5563", lineHeight: 1.78, margin: "0 0 14px" }}>
-        Trabajamos casos reales que van desde movimientos ciudadanos en México hasta escándalos globales de datos, desde la economía de la atención hasta cómo la inteligencia artificial ya está redefiniendo el mercado laboral en <strong>tu área profesional</strong>. Todo con metodología participativa, proyectos que publicas en redes reales y una perspectiva crítica que pocas materias se atreven a ofrecer.
+        En <strong>Redes Sociales y Cultura Digital</strong> no vas a aprender a usar Instagram — eso ya lo sabes. Vas a entender el sistema en el que ya vives: cómo funcionan los algoritmos que moldean lo que ves, lo que compras y lo que piensas, y cómo moverte en ese entorno con inteligencia, ética y estrategia.
       </p>
 
       <p style={{ fontSize: 14, color: "#4B5563", lineHeight: 1.78, margin: "0 0 18px" }}>
-        No importa tu carrera. La cultura digital no es un tema exclusivo de comunicación o sistemas — es el entorno en el que todos vivimos, trabajamos y nos relacionamos hoy. Y entenderlo a fondo <strong>es una ventaja competitiva real</strong> para cualquier profesionista del siglo XXI.
+        No importa tu carrera. La cultura digital no es un tema exclusivo de comunicación o sistemas — es el entorno en el que todos vivimos, trabajamos y nos relacionamos hoy. Entenderlo a fondo <strong>es una ventaja competitiva real</strong> para cualquier profesionista del siglo XXI.
       </p>
 
       <div style={{ background: "rgba(79,70,229,.07)", borderRadius: 16, padding: "16px 18px", borderLeft: "3.5px solid #4F46E5" }}>
         <p style={{ margin: 0, fontSize: 13.5, color: "#374151", lineHeight: 1.7, fontStyle: "italic" }}>
-          "Tu reputación digital ya existe. La diferencia está en si la construyes tú con criterio o la dejas en manos del algoritmo."
+          "Tu huella digital ya existe. La diferencia está en si la construyes tú con criterio o la dejas en manos del algoritmo."
         </p>
       </div>
     </div>
 
-    <button className="btn" style={{ marginBottom: 12 }}>
-      Inscríbete — Redes Sociales y Cultura Digital →
+    <button className="btn" style={{ marginBottom: 12, cursor: "default" }}>
+      Te invitamos a inscribirte
     </button>
 
     <p style={{ textAlign: "center", fontSize: 12, color: "#B0B8CC", marginBottom: 22, lineHeight: 1.6 }}>
-      Universidad Marista de Mérida · Optativa · 5 créditos
+      Universidad Marista de Mérida · Optativa
     </p>
 
     <button className="ghost-btn" onClick={onRestart}>↺ Volver a intentar</button>
