@@ -174,6 +174,45 @@ s.textContent = `
   .scroll-wrap{overflow-y:auto;-webkit-overflow-scrolling:touch}
   .scroll-wrap::-webkit-scrollbar{display:none}
   .shimmer-text{background:linear-gradient(90deg,#4F46E5 0%,#A78BFA 40%,#4F46E5 80%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 2.4s linear infinite;}
+
+  /* Estructura: el fondo ocupa toda la ventana y el contenido se centra (430 px en celular). */
+  .shell{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background .8s ease}
+  .stage{flex:1;width:100%;max-width:430px;margin:0 auto;display:flex;flex-direction:column;position:relative}
+  .credit{text-align:center;font-size:11px;color:#9CA3AF;padding:8px 16px 16px;margin:0;font-family:'Sora',sans-serif}
+  .credit a{color:inherit;text-decoration:none}
+  .credit a:hover,.credit a:focus-visible{text-decoration:underline}
+  .shell.dark .credit{color:rgba(255,255,255,.5)}
+
+  /* Computadora: más espacio, textos más grandes y resultados en dos columnas. */
+  @media (min-width: 900px){
+    .stage{max-width:1120px;padding:0 48px}
+    .w-emoji{font-size:96px !important}
+    .w-title{font-size:60px !important;letter-spacing:-2px !important}
+    .w-lead{font-size:18px !important;max-width:520px !important}
+    .w-cta{max-width:360px !important}
+    .tag{font-size:13px;padding:8px 16px}
+
+    .scr-quiz{width:100%;max-width:860px;margin:0 auto;padding-top:32px !important}
+    .q-card{display:flex;align-items:center;gap:24px;padding:32px 40px !important}
+    .q-emoji{margin-bottom:0 !important;font-size:60px !important}
+    .q-title{font-size:26px !important}
+    .q-opts{flex:0 0 auto !important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .q-opts .opt{margin-bottom:0;flex-direction:column;align-items:flex-start;gap:16px;padding:22px;min-height:150px}
+    .q-opts .opt:hover,.q-opts .opt.sel{transform:translateY(-3px)}
+    .q-next{width:100%;max-width:340px;margin:32px auto 0 !important}
+
+    .scr-email{width:100%;max-width:600px;margin:0 auto}
+    .e-title{font-size:34px !important}
+    .e-lead{font-size:15px !important;max-width:460px !important}
+
+    .scr-calc{background:transparent !important}
+
+    .scr-results{padding:48px 0 72px !important}
+    .r-title{font-size:40px !important}
+    .res-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:28px;align-items:start}
+    .res-cta{max-width:760px;margin:16px auto 0}
+    .res-cta .btn,.res-cta .ghost-btn{max-width:360px;margin-left:auto;margin-right:auto}
+  }
 `;
 document.head.appendChild(s);
 return () => { document.head.removeChild(s); };
@@ -284,21 +323,21 @@ PANTALLA: BIENVENIDA
 ═══════════════════════════════════════════════════ */
 function Welcome({ onStart }) {
 return (
-<div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "44px 24px", textAlign: "center", position: "relative" }}>
+<div className="scr-welcome" style={{ minHeight: "calc(100vh - 44px)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "44px 24px", textAlign: "center", position: "relative" }}>
 <div style={{ position: "absolute", top: 50, left: -50, width: 220, height: 220, background: "radial-gradient(circle,rgba(167,139,250,.22) 0%,transparent 70%)", pointerEvents: "none" }} />
 <div style={{ position: "absolute", bottom: 80, right: -50, width: 260, height: 260, background: "radial-gradient(circle,rgba(99,102,241,.16) 0%,transparent 70%)", pointerEvents: "none" }} />
 
-  <div className="fl" style={{ fontSize: 76, lineHeight: 1, marginBottom: 6, position: "relative" }}>🔍</div>
+  <div className="fl w-emoji" style={{ fontSize: 76, lineHeight: 1, marginBottom: 6, position: "relative" }}>🔍</div>
 
   <div className="fu" style={{ display: "inline-block", background: "linear-gradient(135deg,#EEF2FF,#F5F3FF)", border: "1.5px solid #C7D2FE", borderRadius: 100, padding: "5px 16px", fontSize: 11, fontWeight: 700, color: "#4F46E5", letterSpacing: 1, textTransform: "uppercase", marginTop: 18, marginBottom: 14, position: "relative" }}>
     Gustavo Rodríguez - Docente
   </div>
 
-  <h1 className="fu1" style={{ fontSize: 36, fontWeight: 800, color: "#1E1B4B", lineHeight: 1.18, letterSpacing: -1.4, margin: "0 0 14px", position: "relative" }}>
+  <h1 className="fu1 w-title" style={{ fontSize: 36, fontWeight: 800, color: "#1E1B4B", lineHeight: 1.18, letterSpacing: -1.4, margin: "0 0 14px", position: "relative" }}>
     ¿Cuánto sabe<br />internet <span className="shimmer-text">de ti?</span>
   </h1>
 
-  <p className="fu2" style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.68, maxWidth: 285, margin: "0 auto 28px", position: "relative" }}>
+  <p className="fu2 w-lead" style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.68, maxWidth: 285, margin: "0 auto 28px", position: "relative" }}>
     Descubre tu huella digital en <strong>3 minutos</strong>. Verificación real de filtraciones + análisis personalizado con IA.
   </p>
 
@@ -308,7 +347,7 @@ return (
     ))}
   </div>
 
-  <div className="fu4" style={{ width: "100%", maxWidth: 320, position: "relative" }}>
+  <div className="fu4 w-cta" style={{ width: "100%", maxWidth: 320, position: "relative" }}>
     <button className="btn" onClick={onStart}>Descubrir mi huella digital →</button>
   </div>
 
@@ -328,7 +367,7 @@ const q = QUESTIONS[index];
 const pct = (index / total) * 100;
 
 return (
-<div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", paddingBottom: 36 }}>
+<div className="scr-quiz" style={{ minHeight: "calc(100vh - 44px)", display: "flex", flexDirection: "column", paddingBottom: 36 }}>
 <div style={{ padding: "24px 22px 16px" }}>
 <div className="progress-bar"><div className="progress-fill" style={{ width: `${pct}%` }} /></div>
 <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -338,13 +377,15 @@ return (
 </div>
 
   <div className="si" style={{ padding: "0 20px", flex: 1, display: "flex", flexDirection: "column" }}>
-    <div className="card" style={{ padding: "26px 22px", marginBottom: 18 }}>
-      <div style={{ fontSize: 48, lineHeight: 1, marginBottom: 14 }}>{q.emoji}</div>
-      <h2 style={{ fontSize: 19, fontWeight: 700, color: "#1E1B4B", lineHeight: 1.38, letterSpacing: -.4, margin: 0 }}>{q.text}</h2>
+    <div className="card q-card" style={{ padding: "26px 22px", marginBottom: 18 }}>
+      <div className="q-emoji" style={{ fontSize: 48, lineHeight: 1, marginBottom: 14 }}>{q.emoji}</div>
+      <div>
+      <h2 className="q-title" style={{ fontSize: 19, fontWeight: 700, color: "#1E1B4B", lineHeight: 1.38, letterSpacing: -.4, margin: 0 }}>{q.text}</h2>
       {q.hint && <p style={{ fontSize: 12, color: "#9CA3AF", marginTop: 7, marginBottom: 0 }}>{q.hint}</p>}
+      </div>
     </div>
 
-    <div style={{ flex: 1 }}>
+    <div className="q-opts" style={{ flex: 1 }}>
       {q.options.map((opt, i) => (
         <button key={i} className={`opt${sel === i ? " sel" : ""}`} onClick={() => setSel(i)}>
           <div style={{ width: 22, height: 22, borderRadius: "50%", flexShrink: 0, border: `2.5px solid ${sel === i ? "#4F46E5" : "#D1D5DB"}`, background: sel === i ? "#4F46E5" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .18s" }}>
@@ -358,7 +399,7 @@ return (
       ))}
     </div>
 
-    <div style={{ marginTop: 8 }}>
+    <div className="q-next" style={{ marginTop: 8 }}>
       <button className="btn" disabled={sel === null} onClick={() => onAnswer(q.options[sel].value)}>
         {index < total - 1 ? "Siguiente →" : "Casi listo →"}
       </button>
@@ -382,7 +423,7 @@ function EmailCheck({ onSubmit, onSkip }) {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "40px 24px" }}>
+    <div className="scr-email" style={{ minHeight: "calc(100vh - 44px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "40px 24px" }}>
       <div style={{ textAlign: "center", marginBottom: 32 }}>
         <div className="fu" style={{ fontSize: 62, lineHeight: 1, marginBottom: 16 }}>🔓</div>
 
@@ -390,11 +431,11 @@ function EmailCheck({ onSubmit, onSkip }) {
           Paso final
         </div>
 
-        <h2 className="fu2" style={{ fontSize: 24, fontWeight: 800, color: "#1E1B4B", letterSpacing: -.8, margin: "0 0 12px" }}>
+        <h2 className="fu2 e-title" style={{ fontSize: 24, fontWeight: 800, color: "#1E1B4B", letterSpacing: -.8, margin: "0 0 12px" }}>
           ¿Tu correo apareció<br />en alguna filtración real?
         </h2>
 
-        <p className="fu3" style={{ fontSize: 14, color: "#6B7280", lineHeight: 1.68, margin: "0 auto", maxWidth: 300 }}>
+        <p className="fu3 e-lead" style={{ fontSize: 14, color: "#6B7280", lineHeight: 1.68, margin: "0 auto", maxWidth: 300 }}>
           Lo verificamos en tiempo real con XposedOrNot, una plataforma open source de referencia en ciberseguridad. La IA usará ese resultado para personalizar tu análisis.
         </p>
       </div>
@@ -446,7 +487,7 @@ return () => clearInterval(t);
 }, []);
 
 return (
-<div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 32, textAlign: "center", background: "linear-gradient(155deg,#1E1B4B 0%,#312E81 100%)" }}>
+<div className="scr-calc" style={{ minHeight: "calc(100vh - 44px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 32, textAlign: "center", background: "linear-gradient(155deg,#1E1B4B 0%,#312E81 100%)" }}>
 <div style={{ position: "relative", width: 140, height: 140, marginBottom: 44 }}>
 <div style={{ position: "absolute", top: "50%", left: "50%", width: 78, height: 78, marginTop: -39, marginLeft: -39, borderRadius: "50%", border: "2px solid rgba(167,139,250,.3)", animation: "pulse 2.3s ease-out infinite" }} />
 <div style={{ position: "absolute", top: "50%", left: "50%", width: 78, height: 78, marginTop: -39, marginLeft: -39, borderRadius: "50%", background: "linear-gradient(135deg,#4F46E5,#7C3AED)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 30, boxShadow: "0 8px 32px rgba(79,70,229,.55)", transition: "all .4s" }}>
@@ -498,13 +539,15 @@ const pctDisplay = Math.round(animPct * 100);
   const riskScore = breaches?.riskScore ?? null;
 
 return (
-<div className="scroll-wrap" style={{ minHeight: "100vh", padding: "32px 20px 64px" }}>
+<div className="scroll-wrap scr-results" style={{ padding: "32px 20px 64px" }}>
 
   <div className="fu" style={{ textAlign: "center", marginBottom: 22 }}>
     <div style={{ fontSize: 11, fontWeight: 700, color: "#4F46E5", letterSpacing: 1.1, textTransform: "uppercase", marginBottom: 6 }}>Tu resultado</div>
-    <h2 style={{ fontSize: 28, fontWeight: 800, color: "#1E1B4B", letterSpacing: -1.1, margin: 0 }}>Huella Digital</h2>
+    <h2 className="r-title" style={{ fontSize: 28, fontWeight: 800, color: "#1E1B4B", letterSpacing: -1.1, margin: 0 }}>Huella Digital</h2>
   </div>
 
+  <div className="res-grid">
+  <div className="res-left">
   <div className="fu1 card" style={{ padding: "28px 22px 26px", marginBottom: 16, textAlign: "center" }}>
     <svg viewBox="0 0 200 140" style={{ width: "100%", maxWidth: 220, display: "block", margin: "0 auto" }}>
       {/* Arco invertido: curva hacia arriba */}
@@ -566,7 +609,9 @@ return (
     </div>
   )}
 
-  <div className="fu3" style={{ marginBottom: 24 }}>
+  </div>
+
+  <div className="res-right fu3" style={{ marginBottom: 24 }}>
     <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
       <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg,transparent,#E0E0F4)" }} />
       <span style={{ fontSize: 11, fontWeight: 700, color: "#4F46E5", letterSpacing: 1, textTransform: "uppercase", whiteSpace: "nowrap" }}>✦ Análisis con IA</span>
@@ -593,7 +638,9 @@ return (
     )}
   </div>
 
-  <div className="fu6">
+  </div>
+
+  <div className="fu6 res-cta">
     <div style={{ background: "linear-gradient(160deg,#EEF2FF 0%,#F5F0FF 50%,#EFF6FF 100%)", border: "1.5px solid #C7D2FE", borderRadius: 26, padding: "30px 24px", marginBottom: 20 }}>
       <div style={{ fontSize: 28, marginBottom: 16, textAlign: "center" }}>📚</div>
 
@@ -695,12 +742,17 @@ const wrapBg = screen === "calculating"
 : "linear-gradient(155deg,#F5F3FF 0%,#FFF8F5 55%,#EFF6FF 100%)";
 
 return (
-<div style={{ maxWidth: 430, margin: "0 auto", minHeight: "100vh", background: wrapBg, transition: "background .8s ease", position: "relative", overflow: "hidden" }}>
+<div className={`shell${screen === "calculating" ? " dark" : ""}`} style={{ background: wrapBg }}>
+<main className="stage">
 {screen === "welcome"     && <Welcome onStart={handleStart} />}
 {screen === "quiz"        && <Quiz key={qIndex} index={qIndex} total={QUESTIONS.length} onAnswer={handleAnswer} />}
 {screen === "email"       && <EmailCheck onSubmit={handleEmailSubmit} onSkip={handleSkip} />}
 {screen === "calculating" && <Calculating checkingBreaches={!!email} />}
 {screen === "results"     && <Results score={score} level={getLevel(score)} insights={insights} loadingAI={loadingAI} breaches={breaches} onRestart={handleRestart} />}
+</main>
+<footer className="credit">
+  Diseñado por <a href="https://gustavorodriguezia.com/" target="_blank" rel="noopener noreferrer">Gustavo Rodríguez</a>
+</footer>
 </div>
 );
 }
